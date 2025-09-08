@@ -1,0 +1,67 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+@import "tailwindcss";
+
+
+/* src/index.css or src/App.css */
+
+
+
+/* src/index.css */
+
+@font-face {
+  font-family:'My Custom Font'; /* Choose a descriptive name for your font family */
+  src: url('./assets/fonts/Bitcount/Bitcount-VariableFont_CRSV\,ELSH\,ELXP\,slnt\,wght.ttf') format('truetype');
+  font-weight: 400; /* Normal weight */
+  font-style: normal;
+  font-display: swap; /* Helps with font loading performance */
+}
+
+@font-face {
+  font-family: 'My Custom Font'; /* Use the same family name */
+  src: url('./assets/fonts/Unbounded/Unbounded-VariableFont_wght.ttf') format('truetype');
+  font-weight: 700; /* Bold weight */
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Define CSS Variables for easier use and consistent naming */
+:root {
+  --font-primary: 'My Custom Font', sans-serif; /* Your custom font as primary */
+  --font-secondary: 'Arial', sans-serif; /* A fallback or secondary font */
+}
+
+/* Apply default font to the body */
+body {
+  font-family: var(--font-primary);
+}
+
+/* Create utility classes if you don't want to use tailwind.config.js */
+.font-custom-primary {
+  font-family: var(--font-primary);
+}
+
+.font-custom-secondary {
+  font-family: var(--font-secondary);
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+/* You can also create utility classes here */
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+/* Or apply to specific HTML tags */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Tailwind base styles will still apply unless overridden */
+/* For example, if Tailwind sets a default sans font, this will override it */

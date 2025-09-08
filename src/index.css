@@ -1,0 +1,49 @@
+/* src/index.css */
+@import 'leaflet/dist/leaflet.css';
+/* 1. Import your chosen Google Font (e.g., Poppins) */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+/* 2. Include Tailwind's base, components, and utilities styles. */
+/*    These are the core of Tailwind CSS. */
+
+
+/* 3. Apply custom base styles for consistent behavior and appearance. */
+@layer base {
+  /*
+   * Apply a natural box-sizing model to all elements.
+   * This is a modern best practice for more intuitive layouts.
+   */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  /*
+   * Enable smooth scrolling for the entire page.
+   * This affects anchor links (#) and scroll-to-element functions.
+   */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /*
+   * Set default styles for the body.
+   * This ensures a consistent font, text color, and background
+   * across all pages of your website.
+   */
+  body {
+    -webkit-font-smoothing: antialiased; /* Improves font rendering on Safari/Chrome */
+    -moz-osx-font-smoothing: grayscale;  /* Improves font rendering on Firefox */
+    font-family: 'Poppins', sans-serif; /* Uses the font you configured in tailwind.config.js */
+    background-color: #f8fafc; /* A neutral, light gray background (Tailwind's gray-50) */
+    color: #334155;            /* A dark, soft text color (Tailwind's slate-700) */
+  }
+}
+
+/* 4. Custom styles for react-slick arrows (optional but recommended) */
+/*    This makes the arrows from the slider component look cleaner. */
+.slick-prev:before,
+.slick-next:before {
+  font-size: 24px !important;
+  color: black !important; /* Ensures arrows are visible on the white background */
+}
+
