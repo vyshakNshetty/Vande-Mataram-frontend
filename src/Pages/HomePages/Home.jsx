@@ -7,7 +7,7 @@ import AboutSection from './AboutSection';
 import PillarsSection from './PillerSection'
 import NewsSection from './NewsSection';
 import VolunteerSection from './VolunterSection';
-import axios from 'axios'
+import axios from '../../service/apii'
 
 // ✅ Use public folder path, not src
 // Put "Background.jpg" in: public/Main pages photos/Slide 1/
@@ -25,7 +25,7 @@ const HomePage = () => {
 useEffect(()=>{
 const fetchData=async()=>{
   try {
-    const res=await axios.get('http://127.0.0.1:8000/bg_images/1/')
+    const res=await axios.get('/bg_images/1/')
     setData(res.data)
   } catch (error) {
     console.log(error)
