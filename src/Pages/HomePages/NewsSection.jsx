@@ -28,11 +28,13 @@ const NewsCard = ({ id, image, news_name, date, description }) => (
 // --- News Section Component ---
 const NewsSection = () => {
 const[data,setData]=useState([])
+const[allnews,setAllnews]=useState([])
 useEffect(()=>{
 const fetchDatas=async()=>{
   try {
     const result=await axios.get('http://127.0.0.1:8000/news/')
     setData(result.data.slice(0, 3))
+    setAllnews(result.data)
     
   } catch (error) {
     alert(error)

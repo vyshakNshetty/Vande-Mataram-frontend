@@ -15,6 +15,7 @@ import ContactPage from './Pages/ContactPage/ContactHome'
 import AdrishyaSection from './Pages/Activities/AdrishyaPage'
 import NewsPage from './Pages/NewsPage/NewsPage'
 import AboutSection from './Pages/HomePages/Home'
+import NewsSection from './Pages/HomePages/NewsSection'
 
 function App() {
   return (
