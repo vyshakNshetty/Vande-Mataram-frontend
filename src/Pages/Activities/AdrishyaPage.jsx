@@ -1,5 +1,5 @@
 // src/components/AdrishyaSection.jsx
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -32,6 +32,7 @@ import sc5 from '../../assets/GurukulaActivities/sc5.png'
 
 // ✅ Directly import volunteer image
 import volunteerImage from '../../assets/Adrishya/v.png'
+import axios from 'axios';
 
 const sliderSettings = {
   dots: false,
@@ -57,13 +58,27 @@ const galleryPhotos = [
 ];
 
 const AdrishyaSection = () => {
-  const activitiesData = [
-    { title: 'Vidyavarna Painting', description: 'Transformed 75+ government schools and ashramas with vibrant, educational, and value-based wall art that inspires learning and patriotism.', image: [vv1, vv2, vv3, vv4, vv6] },
-    { title: 'Cultural Activities', description: 'Conducted 150+ cultural programs across Karnataka like Vande Bharata Mataram, Viveka Bharatha, and Kargil Vijay Diwas to instill national pride.', image: [cl1, cl2,cl3] },
-    { title: 'Social Awareness', description: 'Organized impactful drives like Vastra Daan, eco-brick making, and patriotic frame crafting using recycled materials.', image: [sc1,sc2,sc3,sc4,sc5] },
-    { title: 'Workshops & Sessions', description: '500+ sessions on values, leadership, and culture to awaken young minds and build confident, conscious citizens.', image: [work1,work2,work3,work4,work5,work6] },
-    { title: 'Environment', description: 'Initiatives like seed ball drives, goshala and lake cleaning, and bird water stations to nurture eco-consciousness.', image: [en1,en3,en4] },
-  ];
+
+  const[activitiesData,setActivitiesData]=useState([])
+  useEffect(()=>{
+    const fetchData=async()=>{
+      try {
+        const res=await axios.get('http://localhost:8000/adrishya/activities/')
+        setActivitiesData(res.data)
+      } catch (error) {
+        alert(error)
+      }
+    }
+fetchData()
+  },[])
+
+  // const activitiesData = [
+  //   { title: 'Vidyavarna Painting', description: 'Transformed 75+ government schools and ashramas with vibrant, educational, and value-based wall art that inspires learning and patriotism.', image: [vv1, vv2, vv3, vv4, vv6] },
+  //   { title: 'Cultural Activities', description: 'Conducted 150+ cultural programs across Karnataka like Vande Bharata Mataram, Viveka Bharatha, and Kargil Vijay Diwas to instill national pride.', image: [cl1, cl2,cl3] },
+  //   { title: 'Social Awareness', description: 'Organized impactful drives like Vastra Daan, eco-brick making, and patriotic frame crafting using recycled materials.', image: [sc1,sc2,sc3,sc4,sc5] },
+  //   { title: 'Workshops & Sessions', description: '500+ sessions on values, leadership, and culture to awaken young minds and build confident, conscious citizens.', image: [work1,work2,work3,work4,work5,work6] },
+  //   { title: 'Environment', description: 'Initiatives like seed ball drives, goshala and lake cleaning, and bird water stations to nurture eco-consciousness.', image: [en1,en3,en4] },
+  // ];
 
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [formData, setFormData] = useState({
@@ -136,7 +151,7 @@ const AdrishyaSection = () => {
               {/* Title + Description */}
               <p className="text-gray-700 mb-4">
                 <span className="font-bold text-yellow-700">{activity.title} - </span>
-                {activity.description}
+                {activity.des}
               </p>
 
               {/* Slick Slider with images */}
