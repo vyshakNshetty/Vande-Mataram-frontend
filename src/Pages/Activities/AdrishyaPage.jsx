@@ -6,29 +6,6 @@ import Slider from "react-slick";
 
 // --- IMAGE & LOGO PLACEHOLDERS ---
 import adrishyaLogo from '../../assets/adrishiyalogo/AdrishyaLogo.png';
-import adrishya1 from '../../assets/images/adrishiya1.jpg';
-import vv1 from '../../assets/GurukulaActivities/vv1.jpg'
-import vv2 from '../../assets/GurukulaActivities/vv2.png'
-import vv3 from '../../assets/GurukulaActivities/vv3.JPG'
-import vv4 from '../../assets/GurukulaActivities/vv4.JPG'
-import vv6 from '../../assets/GurukulaActivities/vv6.JPG'
-import cl1 from '../../assets/GurukulaActivities/cl1.JPG'
-import cl2 from '../../assets/GurukulaActivities/cl2.JPG'
-import cl3 from '../../assets/Slide6/Kargil/kargil.png'
-import work1 from '../../assets/GurukulaActivities/work1.JPG'
-import work2 from '../../assets/GurukulaActivities/work2.png'
-import work3 from '../../assets/GurukulaActivities/work3.png'
-import work4 from '../../assets/GurukulaActivities/work4.png'
-import work5 from '../../assets/GurukulaActivities/work5.png'
-import work6 from '../../assets/GurukulaActivities/work6.png'
-import en1 from '../../assets/GurukulaActivities/en2.JPG'
-import en3 from '../../assets/GurukulaActivities/en3.JPG'
-import en4 from '../../assets/GurukulaActivities/en4.JPG'
-import sc1 from '../../assets/GurukulaActivities/sc1.JPG'
-import sc2 from '../../assets/GurukulaActivities/sc2.JPG'
-import sc3 from '../../assets/GurukulaActivities/sc3.png'
-import sc4 from '../../assets/GurukulaActivities/sc4.png'
-import sc5 from '../../assets/GurukulaActivities/sc5.png'
 
 // ✅ Directly import volunteer image
 import volunteerImage from '../../assets/Adrishya/v.png'
@@ -49,13 +26,13 @@ const sliderSettings = {
   ]
 };
 
-const galleryPhotos = [
-  adrishya1,
-  'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070',
-  'https://images.unsplash.com/photo-1542810634-71277d952594?q=80&w=2070',
-  'https://images.unsplash.com/photo-1618477388954-7852f32655ec?q=80&w=1964',
-  'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=2070',
-];
+// const galleryPhotos = [
+//   adrishya1,
+//   'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070',
+//   'https://images.unsplash.com/photo-1542810634-71277d952594?q=80&w=2070',
+//   'https://images.unsplash.com/photo-1618477388954-7852f32655ec?q=80&w=1964',
+//   'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=2070',
+// ];
 
 const AdrishyaSection = () => {
 
@@ -72,13 +49,6 @@ const AdrishyaSection = () => {
 fetchData()
   },[])
 
-  // const activitiesData = [
-  //   { title: 'Vidyavarna Painting', description: 'Transformed 75+ government schools and ashramas with vibrant, educational, and value-based wall art that inspires learning and patriotism.', image: [vv1, vv2, vv3, vv4, vv6] },
-  //   { title: 'Cultural Activities', description: 'Conducted 150+ cultural programs across Karnataka like Vande Bharata Mataram, Viveka Bharatha, and Kargil Vijay Diwas to instill national pride.', image: [cl1, cl2,cl3] },
-  //   { title: 'Social Awareness', description: 'Organized impactful drives like Vastra Daan, eco-brick making, and patriotic frame crafting using recycled materials.', image: [sc1,sc2,sc3,sc4,sc5] },
-  //   { title: 'Workshops & Sessions', description: '500+ sessions on values, leadership, and culture to awaken young minds and build confident, conscious citizens.', image: [work1,work2,work3,work4,work5,work6] },
-  //   { title: 'Environment', description: 'Initiatives like seed ball drives, goshala and lake cleaning, and bird water stations to nurture eco-consciousness.', image: [en1,en3,en4] },
-  // ];
 
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [formData, setFormData] = useState({
