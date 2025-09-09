@@ -1,5 +1,5 @@
 // src/components/CoreActivitiesSection.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 // --- Image Placeholders ---
 // Replace these with the actual paths to your images from your drive.
@@ -9,40 +9,53 @@ import artsImage from '../../assets/Art/art.jpg';
 import academicsImage from '../../assets/academics/acadmics.png';
 import spiritualImage from '../../assets/spiritual/spiritual.png';
 import philosophicalImage from '../../assets/images//img1.jpg';
+import axios from 'axios';
 
 const CoreActivitiesSection = () => {
-  const activitiesData = [
-    {
-      title: 'Yoga, Pranayama & Meditation',
-      description: 'Daily sessions to foster physical vitality, mental calmness, and spiritual awareness among children.',
-      image: yogaImage,
-    },
-    {
-      title: 'Sports',
-      description: 'Encouraging teamwork, discipline, and physical fitness through various traditional and modern games.',
-      image: sportsImage,
-    },
-    {
-      title: 'Arts',
-      description: 'Nurturing creativity and self-expression through music, dance, drama, and other visual arts.',
-      image: artsImage,
-    },
-    {
-      title: 'Academics',
-      description: 'Providing a strong educational foundation with a focus on inquiry-based learning and critical thinking.',
-      image: academicsImage,
-    },
-    {
-      title: 'Spiritual',
-      description: 'Cultivating inner growth and core values through chanting, scriptural studies, and reflective practices.',
-      image: spiritualImage,
-    },
-    {
-      title: 'Philosophical',
-      description: 'Engaging in dialogues and discussions that explore timeless wisdom and help develop a mature worldview.',
-      image: philosophicalImage,
-    },
-  ];
+  const [activitiesData,setActivitiesData]= useState([]);
+  useEffect(()=>{
+    const fetchData=async()=>{
+      try {
+        const res=await axios.get('http://localhost:8000/gukulam_activities/')
+        setActivitiesData(res.data)
+      } catch (error) {
+        alert(error)
+      }
+    }
+    fetchData()
+
+  },[])
+  //   {
+  //     title: 'Yoga, Pranayama & Meditation',
+  //     description: 'Daily sessions to foster physical vitality, mental calmness, and spiritual awareness among children.',
+  //     image: yogaImage,
+  //   },
+  //   {
+  //     title: 'Sports',
+  //     description: 'Encouraging teamwork, discipline, and physical fitness through various traditional and modern games.',
+  //     image: sportsImage,
+  //   },
+  //   {
+  //     title: 'Arts',
+  //     description: 'Nurturing creativity and self-expression through music, dance, drama, and other visual arts.',
+  //     image: artsImage,
+  //   },
+  //   {
+  //     title: 'Academics',
+  //     description: 'Providing a strong educational foundation with a focus on inquiry-based learning and critical thinking.',
+  //     image: academicsImage,
+  //   },
+  //   {
+  //     title: 'Spiritual',
+  //     description: 'Cultivating inner growth and core values through chanting, scriptural studies, and reflective practices.',
+  //     image: spiritualImage,
+  //   },
+  //   {
+  //     title: 'Philosophical',
+  //     description: 'Engaging in dialogues and discussions that explore timeless wisdom and help develop a mature worldview.',
+  //     image: philosophicalImage,
+  //   },
+  // ];
 
   return (
     <section className="bg-white py-20 font-sans">
@@ -71,7 +84,7 @@ const CoreActivitiesSection = () => {
                   {activity.title}
                 </h3>
                 <p className="text-base text-gray-600 leading-relaxed">
-                  {activity.description}
+                  {activity.des}
                 </p>
               </div>
             </div>
