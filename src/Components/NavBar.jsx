@@ -22,7 +22,7 @@ const Navbar = () => {
   }, []);
 
   // Check if current path is /news or /news/:id
-  const isNewsPage = location.pathname === "/news" || location.pathname.startsWith("/news/");
+  const isNewsPage = location.pathname === "/news" || location.pathname.startsWith("/news/") ;
 
   // If on news page, force navbar background and text to non-transparent
   const navbarBackgroundClass = isNewsPage || scrolled ? "bg-white shadow-md" : "bg-transparent";
