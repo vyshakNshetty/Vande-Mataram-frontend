@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import axios from 'axios';
+import axios from '../../service/apii';
 
 const NewsCard = ({ id, image, news_name, date, description }) => (
   <div className="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
@@ -31,11 +31,11 @@ const NewsPage = () => {
       try {
         if (id) {
           // Fetch single news when id is present
-          const res = await axios.get(`http://127.0.0.1:8000/news/${id}/`);
+          const res = await axios.get(`/news/${id}/`);
           setSingleNews(res.data);
         } else {
           // Fetch all news
-          const res = await axios.get('http://127.0.0.1:8000/news/');
+          const res = await axios.get('/news/');
           setNewsList(res.data);
         }
       } catch (err) {

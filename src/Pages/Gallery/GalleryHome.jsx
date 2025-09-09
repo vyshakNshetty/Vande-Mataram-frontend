@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import axios from '../../service/apii'
 
 const PREVIEW_COUNT = 6; 
 
@@ -13,8 +13,8 @@ const[ADRISHYA_IMAGES,setADRISHYA_IMAGES]=useState([]);
 useEffect(()=>{
   const fetchData=async()=>{
     try {
-      const res=await axios.get('http://localhost:8000/gallery/gurukulam/')
-      const result=await axios.get('http://localhost:8000/gallery/adrishya/')
+      const res=await axios.get('/gallery/gurukulam/')
+      const result=await axios.get('/gallery/adrishya/')
       setgurukulaImages(res.data)
       setADRISHYA_IMAGES(result.data)
       
