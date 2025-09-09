@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import heroImage from '../../assets/images/img_2.jpg';
 import img1 from '../../assets/Adrishya/img1.jpg'
 import img2 from '../../assets/Adrishya/img2.jpeg'
@@ -51,6 +51,7 @@ import i18 from '../../assets/GurukulamPhotos/i18.png'
 import i19 from '../../assets/GurukulamPhotos/i19.png'
 import i20 from '../../assets/GurukulamPhotos/i20.png'
 import i21 from '../../assets/GurukulamPhotos/i21.png'
+import axios from 'axios';
 
 // -------------------- Gurukula --------------------
 const gurukulamImages = [
@@ -124,6 +125,20 @@ const GalleryPage = () => {
   const openImage = (src) => setSelectedImage(src);
   const closeImage = () => setSelectedImage(null);
 
+   const [Data,setData]=useState([]);
+
+  useEffect(()=>{
+    const fetchData=async()=>{
+      try {
+        const res=await axios.get('http://127.0.0.1:8000/bg_images/4/')
+        setData(res.data)
+      } catch (error) {
+        alert(err)
+      }
+    }
+    fetchData();
+  },[])
+  const heroImage=Data.image
   return (
     <>
       {/* Hero Section */}
