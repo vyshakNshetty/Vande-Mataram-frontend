@@ -1,98 +1,31 @@
 import React, { useEffect, useState } from 'react';
-import heroImage from '../../assets/images/img_2.jpg';
-import img1 from '../../assets/Adrishya/img1.jpg'
-import img2 from '../../assets/Adrishya/img2.jpeg'
-import img3 from '../../assets/Adrishya/img3.jpg'
-import img4 from '../../assets/Adrishya/img4.jpg'
-import img5 from '../../assets/Adrishya/img5.jpg'
-import img6 from '../../assets/Adrishya/img6.jpg'
-import img7 from '../../assets/Adrishya/img7.jpg'
-import img8 from '../../assets/Adrishya/img8.jpg'
-import img9 from '../../assets/Adrishya/img9.jpg'
-import img10 from '../../assets/Adrishya/img10.jpg'
-import img11 from '../../assets/Adrishya/img11.jpg'
-import img12 from '../../assets/Adrishya/img12.jpg'
-import img13 from '../../assets/Adrishya/img13.jpg'
-import img14 from '../../assets/Adrishya/img14.jpg'
-import img15 from '../../assets/Adrishya/img15.jpg'
-import img16 from '../../assets/Adrishya/img16.jpg'
-import img17 from '../../assets/Adrishya/img17.jpg'
-import img18 from '../../assets/Adrishya/img18.jpg'
-import img19 from '../../assets/Adrishya/img19.jpg'
-import img20 from '../../assets/Adrishya/img20.jpg'
-import img21 from '../../assets/Adrishya/img21.jpg'
-import img22 from '../../assets/Adrishya/img22.jpeg'
-import img23 from '../../assets/Adrishya/img23.jpeg'
-import img24 from '../../assets/Adrishya/img24.jpg'
-import img25 from '../../assets/Adrishya/img25.jpg'
-import img26 from '../../assets/Adrishya/img26.jpg'
-import img27 from '../../assets/Adrishya/img27.jpg'
-import img28 from '../../assets/Adrishya/img28.jpg'
-import img29 from '../../assets/Adrishya/img29.jpg'
-
-import i1 from '../../assets/GurukulamPhotos/i1.png'
-import i2 from '../../assets/GurukulamPhotos/i2.png'
-import i3 from '../../assets/GurukulamPhotos/i3.png'
-import i4 from '../../assets/GurukulamPhotos/i4.png'
-import i5 from '../../assets/GurukulamPhotos/i5.png'
-import i6 from '../../assets/GurukulamPhotos/i6.png'
-import i7 from '../../assets/GurukulamPhotos/i7.png'
-import i8 from '../../assets/GurukulamPhotos/i8.png'
-import i9 from '../../assets/GurukulamPhotos/i9.png'
-import i10 from '../../assets/GurukulamPhotos/i10.png'
-import i11 from '../../assets/GurukulamPhotos/i11.png'
-import i12 from '../../assets/GurukulamPhotos/i12.png'
-import i13 from '../../assets/GurukulamPhotos/i13.png'
-import i14 from '../../assets/GurukulamPhotos/i14.png'
-import i15 from '../../assets/GurukulamPhotos/i15.png'
-import i16 from '../../assets/GurukulamPhotos/i16.png'
-import i17 from '../../assets/GurukulamPhotos/i17.png'
-import i18 from '../../assets/GurukulamPhotos/i18.png'
-import i19 from '../../assets/GurukulamPhotos/i19.png'
-import i20 from '../../assets/GurukulamPhotos/i20.png'
-import i21 from '../../assets/GurukulamPhotos/i21.png'
 import axios from 'axios';
 
-// -------------------- Gurukula --------------------
-const gurukulamImages = [
-  { url: i1, date: '2024-07-10' },
-  { url: i2, date: '2024-06-15' },
-  { url: i3, date: '2024-08-05' },
-  { url: i4, date: '2024-05-25' },
-  { url: i5, date: '2024-05-25' },
-  { url: i6, date: '2024-05-25' },
-  { url: i7, date: '2024-05-25' },
-  { url: i8, date: '2024-05-25' },
-  { url: i9, date: '2024-05-25' },
-  { url: i10, date: '2024-05-25' },
-  { url: i11, date: '2024-05-25' },
-  { url: i12, date: '2024-05-25' },
-  { url: i13, date: '2024-05-25' },
-  { url: i14, date: '2024-05-25' },
-  { url: i15, date: '2024-05-25' },
-  { url: i16, date: '2024-05-25' },
-  { url: i17, date: '2024-05-25' },
-  { url: i18, date: '2024-05-25' },
-  { url: i19, date: '2024-05-25' },
-  { url: i20, date: '2024-05-25' },
-  { url: i21, date: '2024-05-25' },
-];
-
-// -------------------- Adrishya --------------------
-const ADRISHYA_IMAGES = [
-  img1, img2, img3, img4, img5, img6, img7, img8, img9, img10, img11,
-  img12,img13,img14,img15,img16,img17,img18,img19,
-  img20,img21,img22,img23,img24,img25,img26,img27,img28,img29,
-]
-
-const PREVIEW_COUNT = 6; // 5 images + "+N more" tile
+const PREVIEW_COUNT = 6; 
 
 const GalleryPage = () => {
+  const[gurukulamImages,setgurukulaImages]=useState([])
+const[ADRISHYA_IMAGES,setADRISHYA_IMAGES]=useState([]);
   const [activeTab, setActiveTab] = useState('gurukula');
   const [selectedImage, setSelectedImage] = useState(null);
   const [sortOrder, setSortOrder] = useState('newest');
 
-  // --- Adrishya collapse/expand ---
+useEffect(()=>{
+  const fetchData=async()=>{
+    try {
+      const res=await axios.get('http://localhost:8000/gallery/gurukulam/')
+      const result=await axios.get('http://localhost:8000/gallery/adrishya/')
+      setgurukulaImages(res.data)
+      setADRISHYA_IMAGES(result.data)
+      
+    } catch (error) {
+      alert(error)
+    }
+  }
+  fetchData()
+
+},[])
+
   const [adrishyaShowAll, setAdrishyaShowAll] = useState(false);
 
   const totalAdrishya = ADRISHYA_IMAGES.length;
@@ -133,11 +66,12 @@ const GalleryPage = () => {
         const res=await axios.get('http://127.0.0.1:8000/bg_images/4/')
         setData(res.data)
       } catch (error) {
-        alert(err)
+      console.log(error)
       }
     }
     fetchData();
   },[])
+
   const heroImage=Data.image
   return (
     <>
@@ -201,15 +135,15 @@ const GalleryPage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Gurukula Tab */}
             {activeTab === 'gurukula' &&
-              renderedGurukulaImages.map((image, index) => (
+              renderedGurukulaImages.map((i, index) => (
                 <button
                   key={`g-${index}`}
                   type="button"
                   className="relative overflow-hidden rounded-2xl shadow-lg group cursor-pointer"
-                  onClick={() => openImage(image.url)}
+                  onClick={() => openImage(i.images)}
                 >
                   <img
-                    src={image.url}
+                    src={i.images}
                     alt={`gurukula gallery image ${index + 1}`}
                     className="w-full h-80 object-cover transform transition-transform duration-300 group-hover:scale-110"
                   />
@@ -236,15 +170,15 @@ const GalleryPage = () => {
 
             {/* Adrishya Tab */}
             {activeTab === 'adrishya' &&
-              adrishyaVisible.map((src, idx) => (
+              adrishyaVisible.map((i, idx) => (
                 <button
                   key={`a-${idx}`}
                   type="button"
                   className="relative overflow-hidden rounded-2xl shadow-lg group cursor-pointer"
-                  onClick={() => openImage(src)}
+                  onClick={() => openImage(i.image)}
                 >
                   <img
-                    src={src}
+                    src={i.image}
                     alt={`adrishya gallery image ${idx + 1}`}
                     className="w-full h-80 object-cover transform transition-transform duration-300 group-hover:scale-110"
                   />
