@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 
-
-
 // --- News Card Component ---
 const NewsCard = ({ id, image, news_name, date, description }) => (
   <div className="bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-xl">
@@ -44,7 +42,7 @@ fetchDatas()
 },[])
 
   return (
-    <section className="bg-gray-50 py-16 sm:py-24">
+    <section className="bg-gray-50 py-10 sm:py-5">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
         {/* Section Header */}
