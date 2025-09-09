@@ -1,10 +1,25 @@
 // src/pages/ContactPage.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import heroImage from '../../assets/images/img_2.jpg'; 
 import ContactFormSection from './ContactForm';
 import ContactDetailsSection from './Details';
+import axios from 'axios';
 
 const ContactPage = () => {
+   const [Data,setData]=useState([]);
+
+  useEffect(()=>{
+    const fetchData=async()=>{
+      try {
+        const res=await axios.get('http://127.0.0.1:8000/bg_images/6/')
+        setData(res.data)
+      } catch (error) {
+        alert(err)
+      }
+    }
+    fetchData();
+  },[])
+  const heroImage=Data.image
   return (
     <div className="overflow-x-hidden"> {/* Prevent horizontal scroll */}
       {/* Hero Section */}

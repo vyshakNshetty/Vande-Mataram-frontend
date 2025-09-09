@@ -1,13 +1,28 @@
 // src/Pages/ActivityPage.jsx
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import img1 from '../../assets/OurmodelBaground/BagroundOurmodel.png';
 import PanchamukhiSection from './PanchamukhiSection';
 import HolisticPathSection from './HolisticPath';
 import UniqueFeaturesSection from './UniqueSection';
+import axios from 'axios';
 // You can replace this with an image more relevant to your activities
 const heroImageURL = img1; 
 
 const OurModel = () => {
+   const [Data,setData]=useState([]);
+
+  useEffect(()=>{
+    const fetchData=async()=>{
+      try {
+        const res=await axios.get('http://127.0.0.1:8000/bg_images/2/')
+        setData(res.data)
+      } catch (error) {
+        alert(err)
+      }
+    }
+    fetchData();
+  },[])
+  const heroImageURL=Data.image
   return (
     <>
       {/* Main Hero Section for Activities */}
