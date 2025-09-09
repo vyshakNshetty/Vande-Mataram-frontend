@@ -1,58 +1,21 @@
-// src/Components/ActivitiesSection.jsx
 
-import React from 'react';
+
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
-import organic from '../../assets/activities/culture.jpg'
-import shlokas from '../../assets/activities/Mallaghamba.jpg'
-import community from '../../assets/activities/Football.jpg'
-import vv1 from '../../assets/photos/vidhyavarana5.jpg'
-// Import react-slick's css files
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import axios from 'axios';
 
-// --- DATA for the cards (no changes here) ---
-const activitiesData = [
-  {
-    image: vv1,
-    title: 'Vidya Varna Painting',
-    description: 'Transforming schools with vibrant, educational murals that inspire learning and patriotism.',
-    
-  },
-  {
-    image: organic,
-    title: 'Vande Bharata Mataram',
-    description: "Cultural programs celebrating India's heritage and instilling national pride.",
-   
-  },
-  {
-    image: shlokas,
-    title: 'Mallakhamba',
-    description: 'Traditional Indian sport that builds strength, flexibility, and endurance while preserving our cultural heritage.',
-    
-  },
-  {
-    image: community,
-    title: 'Sports',
-    description: 'Developing physical fitness, teamwork, and sportsmanship through various athletic activities.',
-   
-  }
-];
 
-// Activity Card component (no changes here)
-const ActivityCard = ({ image, title, description, frequency, participation, percentage }) => (
+const ActivityCard = ({ image, tittle, des}) => (
   <div className="bg-white rounded-lg shadow-lg overflow-hidden h-full flex flex-col mx-2"  style={{minHeight: '350px'}} >
-    <img src={image} alt={title} className="w-full h-48 object-cover" />
+    <img src={image} alt={tittle} className="w-full h-48 object-cover" />
     <div className="p-6 flex flex-col flex-grow">
-      <h3 className="text-xl font-bold text-gray-800">{title}</h3>
-      <p className="mt-2 text-gray-600 flex-grow">{description}</p>
-      {/* <div className="mt-6"> */}
-        {/* <p className="text-sm text-gray-500 mb-1">{frequency}</p> */}
-        {/* <div className="w-full bg-gray-200 rounded-full h-1.5">
-          <div className="bg-yellow-400 h-1.5 rounded-full" style={{ width: `${percentage}%` }}></div>
-        </div> */}
-        {/* <p className="text-xs text-gray-500 mt-1">{participation}</p> */}
-      {/* </div> */}
+      <h3 className="text-xl font-bold text-gray-800">{tittle}</h3>
+      <p className="mt-2 text-gray-600 flex-grow">{des}</p>
+  
     </div>
   </div>
 );
@@ -81,6 +44,19 @@ const PrevArrow = (props) => {
 };
 
 const ActivitiesSection = () => {
+
+  const[activitiesData,setactivitiesData]=useState([]);
+  useEffect(()=>{
+const fetchData=async()=>{
+  try {
+    const res=await axios.get('http://127.0.0.1:8000/home/act/')
+    setactivitiesData(res.data.slice(0,3))
+  } catch (error) {
+    console.log(error)
+  }
+}
+fetchData()
+  },[])
   // Settings for the react-slick slider
   const settings = {
     dots: true,

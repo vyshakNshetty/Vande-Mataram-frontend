@@ -28,7 +28,7 @@ const fetchData=async()=>{
     const res=await axios.get('http://127.0.0.1:8000/bg_images/1/')
     setData(res.data)
   } catch (error) {
-    alert(error)
+    console.log(error)
     
   }
 }
