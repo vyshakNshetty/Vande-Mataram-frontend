@@ -1,44 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import kargil from '../../assets/Slide6/Kargil/kargil.png';
-import kanyakumari from '../../assets/Slide6/3.Kanyakumari/Kanyakumari.png';
-import culture from '../../assets/images/culture.jpg';
+import axios from 'axios';
 
-// --- LATEST NEWS DATA with IDs ---
-const newsData = [
-  {
-    id: 'kargil-vijay-diwas',
-    image: kargil,
-    title: 'Kargil Vijay Diwas Celebrations',
-    date: 'July 26, 2024',
-    excerpt: 'Students and staff paid homage to our war heroes with patriotic songs, speeches, and a flag hoisting ceremony.',
-  },
-  {
-    id: 'kanyakumari-yatra',
-    image: kanyakumari,
-    title: 'Kanyakumari Yatra Completion',
-    date: 'August 15, 2024',
-    excerpt: 'Our team successfully completed the national integration yatra, spreading Swami Vivekananda\'s message across the country.',
-  },
-  {
-    id: 'annual-cultural-fest',
-    image: culture,
-    title: 'Upcoming: Annual Cultural Fest',
-    date: 'September 10, 2024',
-    excerpt: 'Get ready for a vibrant celebration of Indian culture with student performances, music, and art displays.',
-  },
-];
+
+
 
 // --- News Card Component ---
-const NewsCard = ({ id, image, title, date, excerpt }) => (
+const NewsCard = ({ id, image, news_name, date, description }) => (
   <div className="bg-white rounded-lg shadow-md overflow-hidden transition-shadow duration-300 hover:shadow-xl">
     <Link to={`/news/${id}`}>
-      <img src={image} alt={title} className="w-full h-56 object-cover" />
+      <img src={image} alt={news_name} className="w-full h-56 object-cover" />
     </Link>
     <div className="p-6">
-      <h3 className="text-xl font-bold text-gray-800">{title}</h3>
+      <h3 className="text-xl font-bold text-gray-800">{news_name}</h3>
       <p className="mt-2 text-sm text-gray-500">{date}</p>
-      <p className="mt-3 text-gray-600 leading-relaxed">{excerpt}</p>
+      {/* <p className="mt-3 text-gray-600 leading-relaxed">{description}</p> */}
       <Link
         to={`/news/${id}`}
         className="mt-4 inline-block font-semibold text-yellow-500 hover:text-yellow-600 transition-colors"
@@ -51,6 +27,20 @@ const NewsCard = ({ id, image, title, date, excerpt }) => (
 
 // --- News Section Component ---
 const NewsSection = () => {
+const[data,setData]=useState([])
+useEffect(()=>{
+const fetchDatas=async()=>{
+  try {
+    const result=await axios.get('http://127.0.0.1:8000/news/')
+    setData(result.data.slice(0, 3))
+    
+  } catch (error) {
+    alert(error)
+  }
+}
+fetchDatas()
+},[])
+
   return (
     <section className="bg-gray-50 py-16 sm:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -65,7 +55,7 @@ const NewsSection = () => {
 
         {/* News Cards Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {newsData.map((newsItem) => (
+          {data.map((newsItem) => (
             <NewsCard key={newsItem.id} {...newsItem} />
           ))}
         </div>
