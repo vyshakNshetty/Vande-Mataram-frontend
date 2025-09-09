@@ -1,50 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import kargil from '../../assets/Slide6/Kargil/kargil.png';
-import kanyakumari from '../../assets/Slide6/3.Kanyakumari/Kanyakumari.png';
-import culture from '../../assets/images/culture.jpg';
+import axios from 'axios';
 
-// News data
-const allNews = [
-  {
-    id: 'kargil-vijay-diwas',
-    title: 'Kargil Vijay Diwas Celebrations',
-    date: 'July 26, 2024',
-    image: kargil,
-    excerpt: 'Students and staff paid homage to our war heroes...',
-    content:
-      'Students and staff paid homage to our war heroes with patriotic songs, speeches, and a flag hoisting ceremony. The program included talks by veterans, student performances, and a documentary screening on the Kargil war.',
-  },
-  {
-    id: 'kanyakumari-yatra',
-    title: 'Kanyakumari Yatra Completion',
-    date: 'August 15, 2024',
-    image: kanyakumari,
-    excerpt: 'Our team successfully completed the national integration yatra...',
-    content:
-      'The team spread Swami Vivekananda’s message through cultural interactions, public speeches, and spiritual workshops. Participants shared their learnings and bonded across regions.',
-  },
-  {
-    id: 'annual-cultural-fest',
-    title: 'Annual Cultural Fest',
-    date: 'September 10, 2024',
-    image: culture,
-    excerpt: 'Get ready for a vibrant celebration of Indian culture...',
-    content:
-      'The fest included music, dance, drama, art exhibitions, and traditional food. Students showcased India’s rich diversity through creative and engaging performances.',
-  },
-];
 
-// News card component
-const NewsCard = ({ id, image, title, date, excerpt }) => (
+const NewsCard = ({ id, image, news_name, date, description }) => (
   <div className="bg-white rounded-lg shadow hover:shadow-lg transition overflow-hidden">
     <Link to={`/news/${id}`}>
-      <img src={image} alt={title} className="w-full h-56 object-cover" />
+      <img src={image} alt={news_name} className="w-full h-56 object-cover" />
     </Link>
     <div className="p-5">
-      <h3 className="text-xl font-semibold text-gray-800">{title}</h3>
+      <h3 className="text-xl font-semibold text-gray-800">{news_name}</h3>
       <p className="text-sm text-gray-500 mt-1">{date}</p>
-      <p className="text-gray-700 mt-2">{excerpt}</p>
+      <p className="text-gray-700 mt-2">{description}</p>
       <Link
         to={`/news/${id}`}
         className="mt-4 inline-block text-yellow-600 font-semibold hover:text-yellow-700"
@@ -57,10 +24,29 @@ const NewsCard = ({ id, image, title, date, excerpt }) => (
 
 const NewsPage = () => {
   const { id } = useParams();
+  const[news_data,setnewsData]=useState([])
+  const[news,setNews]=useState([])
+  useEffect(()=>{
+const fetchdata=async()=>{
+  try{
+    const result=await axios.get('http://127.0.0.1:8000/news/')
+    const res=await axios.get(`http://127.0.0.1:8000/news/${id}`)
+    setnewsData(result.data)
+    setNews(res.data)
+
+  }
+  catch(err){
+    alert(err)
+  }
+
+}
+fetchdata()
+  },[])
+
 
   if (id) {
-    const selectedNews = allNews.find((item) => item.id === id);
-    const otherNews = allNews.filter((item) => item.id !== id);
+    const selectedNews = news
+    const otherNews = news_data.filter((item) => item.id !== news.id);
 
     if (!selectedNews) {
       return (
@@ -76,16 +62,16 @@ const NewsPage = () => {
           <div className="md:w-1/2">
             <img
               src={selectedNews.image}
-              alt={selectedNews.title}
+              alt={selectedNews.news_name}
               className="w-full rounded-lg shadow"
             />
           </div>
           <div className="md:w-1/2">
             <h1 className="text-3xl font-bold text-gray-800 mb-2">
-              {selectedNews.title}
+              {selectedNews.news_data}
             </h1>
             <p className="text-sm text-gray-500 mb-4">{selectedNews.date}</p>
-            <p className="text-lg text-gray-700 leading-relaxed">{selectedNews.content}</p>
+            <p className="text-lg text-gray-700 leading-relaxed">{selectedNews.description}</p>
             <div className="mt-6">
               <Link
                 to="/news"
@@ -109,10 +95,10 @@ const NewsPage = () => {
               >
                 <img
                   src={item.image}
-                  alt={item.title}
+                  alt={item.news_name}
                   className="h-40 w-full object-cover rounded mb-3"
                 />
-                <h3 className="text-lg font-bold text-gray-800">{item.title}</h3>
+                <h3 className="text-lg font-bold text-gray-800">{item.news_name}</h3>
                 <p className="text-sm text-gray-500">{item.date}</p>
               </Link>
             ))}
@@ -136,7 +122,7 @@ const NewsPage = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {allNews.map((newsItem) => (
+          {news_data.map((newsItem) => (
             <NewsCard key={newsItem.id} {...newsItem} />
           ))}
         </div>
