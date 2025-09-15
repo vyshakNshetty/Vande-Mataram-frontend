@@ -1,8 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import teamMember1 from '../../assets/Team/Madhusudan.png';
-import teamMember2 from '../../assets/Team/SAMSKRUTHI.png';
-import teamMember3 from '../../assets/Team/DANAMMA.png';
-import teamMember4 from '../../assets/Team/NEHA.png';
+
 import axios from 'axios';
 
 const TeamSection = () => {

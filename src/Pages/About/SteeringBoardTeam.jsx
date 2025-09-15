@@ -1,18 +1,7 @@
 // src/components/SteeringBoardSection.jsx
 import React, { useEffect, useState } from 'react';
 
-// --- IMAGE PLACEHOLDERS ---
-// You will need to replace these with your actual board member photos.
-// I've created 9 placeholders for you.
-import boardMember1 from '../../assets/SteeringBoardTeam/shubhajaiprakash.jpg'
-import boardMember2 from '../../assets/SteeringBoardTeam/member2.jpg'
-import boardMember3 from '../../assets/SteeringBoardTeam/Jayashree Ramakrishna.jpg'
-import boardMember4 from '../../assets/SteeringBoardTeam/Hasabi.jpg'
-import boardMember5 from '../../assets/SteeringBoardTeam/Jagannath Bidrigowdra.jpg'
-import boardMember6 from '../../assets/SteeringBoardTeam/girish.jpg'
-import boardMember7 from '../../assets/SteeringBoardTeam/shubhajaiprakash.jpg'
-import boardMember8 from '../../assets/SteeringBoardTeam/Ranjith.jpg'
-import boardMember9 from '../../assets/SteeringBoardTeam/shubhajaiprakash.jpg'
+
 import axios from 'axios';
 
 const SteeringBoardSection = () => {
@@ -30,16 +19,7 @@ const SteeringBoardSection = () => {
         fetchData()
       },[])
 
-  // const boardData = [
-  //   { name: 'Shubha Jaiprakash', image: boardMember1 },
-  //   { name: `Dr.P Subbanna Bhat`, image: boardMember2 },
-  //   { name: 'Jayashree Ramakrishna', image: boardMember3 },
-  //   { name: 'Dr C S Hasabi', image: boardMember4 },
-  //   { name: 'Jagannath Bidrigowdra', image: boardMember5 },
-  //   { name: 'Girish Prabhu S', image: boardMember6 },
-  //   { name: 'Ranjith B R', image: boardMember8 },
-  //   { name: 'Raghavendra B S ', image:'' },
-  // ];
+ 
 
   return (
     <section className="bg-yellow-400 py-20 font-sans">

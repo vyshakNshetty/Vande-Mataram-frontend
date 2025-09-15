@@ -25,7 +25,7 @@ const HomePage = () => {
 useEffect(()=>{
 const fetchData=async()=>{
   try {
-    const res=await axios.get('/bg_images/1/')
+    const res=await axios.get('')
     setData(res.data)
   } catch (error) {
     console.log(error)

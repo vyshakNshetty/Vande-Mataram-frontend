@@ -1,7 +1,8 @@
 import React from 'react';
-import holisticPathImage from '../../assets/images/Holistickpath.jpg';
+
 
 const HolisticPathSection = () => {
+  const holisticPathImage=''
   return (
     <section className="bg-yellow-400 py-16 sm:py-24">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">

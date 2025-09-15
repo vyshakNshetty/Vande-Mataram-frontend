@@ -8,7 +8,7 @@ import Slider from "react-slick";
 import adrishyaLogo from '../../assets/adrishiyalogo/AdrishyaLogo.png';
 
 // ✅ Directly import volunteer image
-import volunteerImage from '../../assets/Adrishya/v.png'
+// import volunteerImage from '../../assets/Adrishya/v.png'
 import axios from 'axios';
 
 const sliderSettings = {
@@ -26,15 +26,8 @@ const sliderSettings = {
   ]
 };
 
-// const galleryPhotos = [
-//   adrishya1,
-//   'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=80&w=2070',
-//   'https://images.unsplash.com/photo-1542810634-71277d952594?q=80&w=2070',
-//   'https://images.unsplash.com/photo-1618477388954-7852f32655ec?q=80&w=1964',
-//   'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?q=80&w=2070',
-// ];
-
 const AdrishyaSection = () => {
+  const volunteerImage=''
 
   const[activitiesData,setActivitiesData]=useState([])
   useEffect(()=>{

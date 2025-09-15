@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
+import Logo from '../assets/logo/logo.png'
+
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
+const logo=Logo;
   const location = useLocation();
 
   // Detect scroll to change navbar background and text color
@@ -58,7 +61,7 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <NavLink to="/" className="flex items-center space-x-2">
               <img
-                src="/LOGO/Vande Mataram Gurukulam_Logo_Gold_121222_Small Size.png"
+                src={logo}
                 alt="Vande Mataram Gurukulam Logo"
                 className="h-10 w-auto sm:h-12 object-contain"
               />

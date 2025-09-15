@@ -11,7 +11,7 @@
 
 @font-face {
   font-family:'My Custom Font'; /* Choose a descriptive name for your font family */
-  src: url('./assets/fonts/Bitcount/Bitcount-VariableFont_CRSV\,ELSH\,ELXP\,slnt\,wght.ttf') format('truetype');
+  src: url('') format('truetype');
   font-weight: 400; /* Normal weight */
   font-style: normal;
   font-display: swap; /* Helps with font loading performance */
@@ -19,7 +19,7 @@
 
 @font-face {
   font-family: 'My Custom Font'; /* Use the same family name */
-  src: url('./assets/fonts/Unbounded/Unbounded-VariableFont_wght.ttf') format('truetype');
+  src: url('') format('truetype');
   font-weight: 700; /* Bold weight */
   font-style: normal;
   font-display: swap;

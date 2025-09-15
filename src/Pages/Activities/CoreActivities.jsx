@@ -1,14 +1,6 @@
-// src/components/CoreActivitiesSection.jsx
+
 import React, { useEffect, useState } from 'react';
 
-// --- Image Placeholders ---
-// Replace these with the actual paths to your images from your drive.
-import yogaImage from '../../assets/yoga/yoga.jpg';
-import sportsImage from '../../assets/sports/Kho-Kho.jpg';
-import artsImage from '../../assets/Art/art.jpg';
-import academicsImage from '../../assets/academics/acadmics.png';
-import spiritualImage from '../../assets/spiritual/spiritual.png';
-import philosophicalImage from '../../assets/images//img1.jpg';
 import axios from 'axios';
 
 const CoreActivitiesSection = () => {
