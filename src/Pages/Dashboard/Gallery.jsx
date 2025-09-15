@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
-import axios from '../../service/api'; // Make sure baseURL is configured here
+import axios from "../../service/api";
 
 export default function GalleryToggle() {
-  const [galleryType, setGalleryType] = useState("gurukulam"); // "gurukulam" | "adrishya"
+  const [galleryType, setGalleryType] = useState("gurukulam");
   const [formData, setFormData] = useState({ date: "", image: null });
   const [images, setImages] = useState([]);
 
   const endpoint = `gallery/${galleryType}/`;
 
-  // GET
   const fetchGallery = async () => {
     try {
       const res = await axios.get(endpoint);
@@ -21,17 +20,15 @@ export default function GalleryToggle() {
 
   useEffect(() => {
     fetchGallery();
-    setFormData({ date: "", image: null }); // Reset form when toggling
+    setFormData({ date: "", image: null });
   }, [galleryType]);
 
-  // FORM
   const handleChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const handleFileChange = (e) =>
     setFormData({ ...formData, image: e.target.files[0] });
 
-  // POST
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -54,7 +51,6 @@ export default function GalleryToggle() {
     }
   };
 
-  // DELETE
   const handleDelete = async (id) => {
     if (!confirm("Are you sure to delete this image?")) return;
     try {
@@ -68,100 +64,147 @@ export default function GalleryToggle() {
   };
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
+    <div className="max-w-7xl mx-auto px-6 py-10">
       {/* Toggle Buttons */}
-      <div className="flex justify-center mb-6 gap-4">
-        <button
-          className={`px-4 py-2 rounded ${
-            galleryType === "gurukulam"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 text-gray-700"
-          }`}
-          onClick={() => setGalleryType("gurukulam")}
-        >
-          Gurukulam Gallery
-        </button>
-        <button
-          className={`px-4 py-2 rounded ${
-            galleryType === "adrishya"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 text-gray-700"
-          }`}
-          onClick={() => setGalleryType("adrishya")}
-        >
-          Adrishya Gallery
-        </button>
+      <div className="flex justify-center mb-10 gap-6">
+        {["gurukulam", "adrishya"].map((type) => (
+          <button
+            key={type}
+            onClick={() => setGalleryType(type)}
+            className={`relative px-6 py-3 font-semibold rounded-full transition-all duration-300 
+              ${
+                galleryType === type
+                  ? "bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 text-white shadow-lg shadow-pink-300/50"
+                  : "bg-gray-200 text-gray-700 hover:bg-indigo-100"
+              }
+              before:absolute before:inset-0 before:rounded-full before:opacity-0 before:transition-opacity before:duration-300
+              hover:before:opacity-30 before:bg-gradient-to-r before:from-indigo-400 before:via-purple-500 before:to-pink-500
+            `}
+          >
+            {type.charAt(0).toUpperCase() + type.slice(1)} Gallery
+          </button>
+        ))}
       </div>
 
-      {/* Form */}
-      <div className="bg-white shadow rounded p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4">
-          Upload to {galleryType === "gurukulam" ? "Gurukulam" : "Adrishya"} Gallery
+      {/* Upload Form */}
+      <div className="bg-white shadow-xl rounded-2xl p-8 max-w-2xl mx-auto mb-14">
+        <h2 className="text-3xl font-bold text-gray-800 mb-6 tracking-wide">
+          Upload to {galleryType.charAt(0).toUpperCase() + galleryType.slice(1)} Gallery
         </h2>
-        <form onSubmit={handleSubmit} encType="multipart/form-data">
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-1">Date</label>
+
+        <form
+          onSubmit={handleSubmit}
+          encType="multipart/form-data"
+          className="space-y-6"
+        >
+          <div>
+            <label
+              htmlFor="date"
+              className="block text-gray-700 font-semibold mb-2"
+            >
+              Select Date
+            </label>
             <input
               type="date"
+              id="date"
               name="date"
               value={formData.date}
               onChange={handleChange}
-              className="w-full border rounded p-2"
               required
+              className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-purple-500 transition"
             />
           </div>
 
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-1">Image</label>
+          <div>
+            <label
+              htmlFor="image"
+              className="block text-gray-700 font-semibold mb-2"
+            >
+              Choose Image
+            </label>
             <input
+              id="image"
               type="file"
               accept="image/*"
               onChange={handleFileChange}
-              className="w-full"
               required
+              className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
+                file:rounded-full file:border-0
+                file:text-sm file:font-semibold
+                file:bg-gradient-to-r file:from-indigo-600 file:via-purple-600 file:to-pink-600
+                file:text-white
+                hover:file:brightness-110
+                cursor-pointer
+              "
             />
           </div>
 
           <button
             type="submit"
-            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+            className="w-full bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500
+              text-white font-bold py-3 rounded-full shadow-lg hover:shadow-pink-400/70
+              transition duration-300"
           >
-            Upload
+            Upload Image
           </button>
         </form>
       </div>
 
       {/* Gallery Grid */}
       <div>
-        <h2 className="text-2xl font-semibold mb-4">
-          {galleryType === "gurukulam" ? "Gurukulam" : "Adrishya"} Gallery
+        <h2 className="text-4xl font-extrabold text-gray-900 mb-8 text-center tracking-wide">
+          {galleryType.charAt(0).toUpperCase() + galleryType.slice(1)} Gallery
         </h2>
+
         {images.length === 0 ? (
-          <p className="text-gray-500">No images uploaded yet.</p>
+          <div className="text-center text-gray-400 space-y-2">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="mx-auto h-16 w-16 opacity-50"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={1.5}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V7M3 7l9 6 9-6"
+              />
+            </svg>
+            <p className="text-lg italic">No images uploaded yet.</p>
+          </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {images.map((img) =>
               img.image || img.images ? (
                 <div
                   key={img.id}
-                  className="bg-white shadow rounded overflow-hidden relative group"
+                  className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer"
                 >
+                  {/* Image */}
                   <img
                     src={img.image || img.images}
                     alt="Gallery"
-                    className="w-full h-64 object-cover group-hover:opacity-90 transition duration-200"
+                    className="w-full aspect-[4/3] object-cover rounded-3xl transform transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
                   />
-                  <div className="p-4">
-                    <h3 className="text-sm font-medium text-gray-700">
-                      📅 {img.date || "N/A"}
-                    </h3>
+
+                  {/* Overlay */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-3xl flex flex-col justify-end p-4">
+                    <p className="text-white text-sm font-semibold mb-2">
+                      📅 {img.date || "Unknown Date"}
+                    </p>
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDelete(img.id);
+                      }}
+                      className="self-start bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded-full text-xs font-semibold shadow-md transition"
+                    >
+                      Delete
+                    </button>
                   </div>
-                  <button
-                    onClick={() => handleDelete(img.id)}
-                    className="absolute top-2 right-2 bg-red-600 text-white text-xs px-2 py-1 rounded hover:bg-red-700"
-                  >
-                    Delete
-                  </button>
                 </div>
               ) : null
             )}
