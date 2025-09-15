@@ -1,40 +1,25 @@
-// src/Pages/Home.jsx
-// import img1 from '../../assets/images/img1.jpg'
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import heroImageURL from '../../assets/Backgrounds/home.jpg'
 import ActivitiesSection from './Activities';
 import AboutSection from './AboutSection';
 import PillarsSection from './PillerSection'
 import NewsSection from './NewsSection';
 import VolunteerSection from './VolunterSection';
-import axios from '../../service/apii'
 
-// ✅ Use public folder path, not src
-// Put "Background.jpg" in: public/Main pages photos/Slide 1/
-
-const youtubeVideoID = '_0yLQ4H0W1g'; // Extracted from your YouTube link
+const youtubeVideoID = '_0yLQ4H0W1g'; 
 
 const HomePage = () => {
-  const[Data,setData]=useState([]);
+
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
 
-useEffect(()=>{
-const fetchData=async()=>{
-  try {
-    const res=await axios.get('')
-    setData(res.data)
-  } catch (error) {
-    console.log(error)
-    
-  }
-}
-fetchData();
-},[])
-const heroImageURL = Data.image;
+
+
   return (
     <>
       {/* Main Hero Section */}
