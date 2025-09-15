@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "../../service/api"; // your axios instance
+import axios from "../../service/api";
 
 export default function Dashboard_news() {
   const [formData, setFormData] = useState({
@@ -11,16 +11,11 @@ export default function Dashboard_news() {
 
   const [newsList, setNewsList] = useState([]);
   const [editId, setEditId] = useState(null);
-
   const endpoint = "news/";
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, image: e.target.files[0] });
-  };
+  useEffect(() => {
+    fetchNews();
+  }, []);
 
   const fetchNews = async () => {
     try {
@@ -31,9 +26,11 @@ export default function Dashboard_news() {
     }
   };
 
-  useEffect(() => {
-    fetchNews();
-  }, []);
+  const handleChange = (e) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleFileChange = (e) =>
+    setFormData({ ...formData, image: e.target.files[0] });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -116,140 +113,141 @@ export default function Dashboard_news() {
   };
 
   return (
-    <div className="p-6 flex gap-6">
-      {/* Left side: form */}
-      <div className="w-1/2">
-        <h2 className="text-2xl font-semibold mb-6">
-          {editId ? "Edit News" : "Add News"}
-        </h2>
+    <div className="p-4 max-w-7xl mx-auto">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Form Section */}
+        <div className="bg-white shadow-lg rounded-lg p-6">
+          <h2 className="text-xl font-bold mb-4 text-gray-800">
+            {editId ? "✏️ Edit News" : "📰 Add News"}
+          </h2>
 
-        <form
-          onSubmit={handleSubmit}
-          className="bg-white shadow-md rounded p-6"
-          encType="multipart/form-data"
-        >
-          {/* News Name */}
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2">News Title</label>
-            <input
-              type="text"
-              name="news_name"
-              value={formData.news_name}
-              onChange={handleChange}
-              className="w-full border rounded p-2"
-              required
-            />
-          </div>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                News Title
+              </label>
+              <input
+                type="text"
+                name="news_name"
+                value={formData.news_name}
+                onChange={handleChange}
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                required
+              />
+            </div>
 
-          {/* Description */}
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Description</label>
-            <textarea
-              name="description"
-              value={formData.description}
-              onChange={handleChange}
-              className="w-full border rounded p-2"
-              rows="4"
-              required
-            />
-          </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Description
+              </label>
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleChange}
+                rows="4"
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                required
+              />
+            </div>
 
-          {/* Date */}
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2">Date</label>
-            <input
-              type="date"
-              name="date"
-              value={formData.date}
-              onChange={handleChange}
-              className="w-full border rounded p-2"
-              required
-            />
-          </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                Date
+              </label>
+              <input
+                type="date"
+                name="date"
+                value={formData.date}
+                onChange={handleChange}
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                required
+              />
+            </div>
 
-          {/* Image Upload */}
-          <div className="mb-4">
-            <label className="block text-gray-700 mb-2">
-              {editId ? "Change Image (optional)" : "Image"}
-            </label>
-            <input
-              type="file"
-              name="image"
-              accept="image/*"
-              onChange={handleFileChange}
-              className="w-full"
-              required={!editId}
-            />
-          </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700">
+                {editId ? "Change Image (optional)" : "Upload Image"}
+              </label>
+              <input
+                type="file"
+                name="image"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="mt-1 block w-full text-sm"
+                required={!editId}
+              />
+            </div>
 
-          {/* Buttons */}
-          <div className="flex gap-3">
-            <button
-              type="submit"
-              className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-            >
-              {editId ? "Update" : "Submit"}
-            </button>
-
-            {editId && (
+            <div className="flex gap-3">
               <button
-                type="button"
-                onClick={cancelEdit}
-                className="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600"
+                type="submit"
+                className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md"
               >
-                Cancel
+                {editId ? "Update" : "Submit"}
               </button>
-            )}
-          </div>
-        </form>
-      </div>
+              {editId && (
+                <button
+                  type="button"
+                  onClick={cancelEdit}
+                  className="bg-gray-500 hover:bg-gray-600 text-white font-medium px-4 py-2 rounded-md"
+                >
+                  Cancel
+                </button>
+              )}
+            </div>
+          </form>
+        </div>
 
-      {/* Right side: list */}
-      <div className="w-1/2">
-        <h2 className="text-2xl font-semibold mb-6">News Items</h2>
-        <div className="space-y-4">
-          {newsList.length === 0 ? (
-            <p className="text-gray-500">No news available.</p>
-          ) : (
-            newsList.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-start gap-4 bg-white shadow rounded p-4"
-              >
-                {/* Image */}
-                {item.image && (
-                  <img
-                    src={item.image}
-                    alt={item.news_name}
-                    className="w-24 h-24 object-cover rounded"
-                  />
-                )}
+        {/* News List Section */}
+        <div className="bg-white shadow-lg rounded-lg p-6 overflow-y-auto max-h-[calc(100vh-160px)]">
+          <h2 className="text-xl font-bold mb-4 text-gray-800">📋 News Items</h2>
+          <div className="space-y-4">
+            {newsList.length === 0 ? (
+              <p className="text-gray-500">No news available.</p>
+            ) : (
+              newsList.map((item) => (
+                <div
+                  key={item.id}
+                  className="flex items-start gap-4 bg-gray-50 border border-gray-200 rounded-lg p-4 shadow-sm hover:shadow-md transition-shadow"
+                >
+                  {/* Image */}
+                  {item.image && (
+                    <img
+                      src={item.image}
+                      alt={item.news_name}
+                      className="w-24 h-24 object-cover rounded-md border"
+                    />
+                  )}
 
-                {/* Content */}
-                <div className="flex-1">
-                  <h3 className="text-lg font-bold">{item.news_name}</h3>
-                  <p className="text-gray-600">{item.description}</p>
-                  <p className="text-sm text-gray-400">📅 {item.date}</p>
+                  {/* Content */}
+                  <div className="flex-1">
+                    <h3 className="text-lg font-semibold text-gray-800">
+                      {item.news_name}
+                    </h3>
+                    <p className="text-gray-600 text-sm mb-1">
+                      {item.description}
+                    </p>
+                    <p className="text-gray-400 text-xs">📅 {item.date}</p>
 
-                  {/* Actions */}
-                  <div className="mt-2 flex gap-2">
-                    <button
-                      onClick={() => handleEdit(item)}
-                      className="px-3 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600"
-                    >
-                      Edit
-                    </button>
-                    <button
-                      onClick={() => handleDelete(item.id)}
-                      className="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700"
-                    >
-                      Delete
-                    </button>
+                    <div className="mt-2 flex gap-2">
+                      <button
+                        onClick={() => handleEdit(item)}
+                        className="bg-yellow-500 hover:bg-yellow-600 text-white text-sm px-3 py-1 rounded"
+                      >
+                        Edit
+                      </button>
+                      <button
+                        onClick={() => handleDelete(item.id)}
+                        className="bg-red-600 hover:bg-red-700 text-white text-sm px-3 py-1 rounded"
+                      >
+                        Delete
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-          )}
+              ))
+            )}
+          </div>
         </div>
       </div>
     </div>

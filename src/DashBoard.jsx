@@ -1,7 +1,6 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import Navbar from '../src/Components/Dashboard/Navbar';
 import Sidebar from '../src/Components/Dashboard/SideBar';
-
 const DashboardLayout = () => {
   const location = useLocation();
   const isLoginPage = location.pathname === '/login';
@@ -19,6 +18,7 @@ const DashboardLayout = () => {
       </div>
     </div>
   );
+
 };
 
 export default DashboardLayout;

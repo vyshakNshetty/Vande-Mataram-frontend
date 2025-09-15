@@ -1,18 +1,42 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 export default function Sidebar() {
+  const navItems = [
+    { name: "Home", path: "/dashboard/home" },
+    { name: "News", path: "/dashboard/news" },
+    { name: "Activities", path: "/dashboard/activities" },
+    { name: "Gallery", path: "/dashboard/gallery" },
+    { name: "Team", path: "/dashboard/team" },
+    { name: "Board Team", path: "/dashboard/board_team" },
+    { name: "Users", path: "/dashboard/users" },
+  ];
+
   return (
-    <div className="w-64 h-screen bg-gray-100 border-r flex flex-col p-4">
-      <h2 className="text-xl font-bold mb-6">Menu</h2>
-      <nav className="flex flex-col space-y-3">
-        <Link to="/dashboard/home" className="hover:bg-gray-200 p-2 rounded">Home</Link>
-        <Link to="/dashboard/news" className="hover:bg-gray-200 p-2 rounded">News</Link>
-        <Link to="/dashboard/activities" className="hover:bg-gray-200 p-2 rounded">Activities</Link>
-        <Link to="/dashboard/gallery" className="hover:bg-gray-200 p-2 rounded">Gallery</Link>
-        <Link to="/dashboard/team" className="hover:bg-gray-200 p-2 rounded">Team</Link>
-        <Link to="/dashboard/board_team" className="hover:bg-gray-200 p-2 rounded">Board Team</Link>
-        <Link to="/dashboard/users" className="hover:bg-gray-200 p-2 rounded">Users</Link>
+    <aside className="w-64 h-screen bg-gradient-to-b from-slate-800 to-slate-900 text-white shadow-lg flex flex-col">
+      {/* Brand Header */}
+      <div className="p-6 border-b border-slate-700">
+        <h2 className="text-2xl font-bold tracking-tight">VM Admin</h2>
+        <p className="text-sm text-slate-400">Dashboard Panel</p>
+      </div>
+
+      {/* Navigation Links */}
+      <nav className="flex-1 p-4 space-y-2">
+        {navItems.map(({ name, path }) => (
+          <NavLink
+            key={path}
+            to={path}
+            className={({ isActive }) =>
+              `block px-4 py-2 rounded-md text-sm font-medium transition-all ${
+                isActive
+                  ? "bg-slate-700 text-white"
+                  : "text-slate-300 hover:bg-slate-700 hover:text-white"
+              }`
+            }
+          >
+            {name}
+          </NavLink>
+        ))}
       </nav>
-    </div>
+    </aside>
   );
 }
