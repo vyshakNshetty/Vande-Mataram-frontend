@@ -3,16 +3,17 @@ import React, { useEffect, useState } from 'react';
 import ContributionSection from './ContributionSection';
 // --- IMAGE PLACEHOLDER ---
 // You should replace this with a powerful, relevant image for your support page.
-import heroImage from '../../assets/images/donate.png' 
+
 import axios from 'axios';
 
 const SupportUsPage = () => {
+
    const [Data,setData]=useState([]);
 
   useEffect(()=>{
     const fetchData=async()=>{
       try {
-        const res=await axios.get('http://127.0.0.1:8000/bg_images/5/')
+        const res=await axios.get('')
         setData(res.data)
       } catch (error) {
         alert(err)
@@ -20,7 +21,7 @@ const SupportUsPage = () => {
     }
     fetchData();
   },[])
-  const heroImage=Data.image
+  const heroImage=''
   return (
     <>
       {/* Main Hero Section for Support Page */}
