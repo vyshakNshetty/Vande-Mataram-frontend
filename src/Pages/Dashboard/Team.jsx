@@ -105,12 +105,12 @@ export default function Team() {
     <div className="max-w-7xl mx-auto px-6 py-3 flex flex-col md:flex-row gap-12">
       {/* Left: Form */}
       <div className="md:w-1/2 w-full bg-white rounded-3xl shadow-2xl p-8">
-        <h2 className="text-3xl font-extrabold mb-8 text-gray-900 tracking-wide">
+        <h2 className="text-3xl font-extrabold mb-8 text-gray-700 tracking-wide">
           {editId ? "Edit Team Member" : "Add Team Member"}
         </h2>
 
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit} 
           encType="multipart/form-data"
           className="space-y-2"
         >
@@ -191,7 +191,7 @@ export default function Team() {
                 file:mr-4 file:py-2 file:px-4
                 file:rounded-full file:border-0
                 file:text-sm file:font-semibold
-                file:bg-gradient-to-r file:from-indigo-600 file:via-purple-600 file:to-pink-600
+                file:bg-gray-700
                 file:text-white hover:file:brightness-110
                 transition"
             />
@@ -200,8 +200,8 @@ export default function Team() {
           <div className="flex gap-4">
             <button
               type="submit"
-              className="flex-1 bg-gradient-to-r from-indigo-600 via-purple-700 to-pink-600
-                text-white font-bold py-3 rounded-full shadow-lg hover:shadow-pink-400/70
+              className="flex-1 bg-gray-800
+                text-white font-bold py-3 rounded-full shadow-lg 
                 transition duration-300"
             >
               {editId ? "Update Member" : "Add Member"}
@@ -221,7 +221,7 @@ export default function Team() {
 
       {/* Right: Team Members */}
       <div className="md:w-1/2 w-full">
-        <h2 className="text-3xl font-extrabold mb-8 text-gray-900 tracking-wide">
+        <h2 className="text-3xl font-extrabold mb-8 text-gray-700 tracking-wide">
           Team Members
         </h2>
 
@@ -260,7 +260,7 @@ export default function Team() {
                   <div className="mt-5 flex justify-center md:justify-start gap-4">
                     <button
                       onClick={() => handleEdit(member)}
-                      className="px-5 py-2 rounded-full bg-yellow-500 text-white font-semibold shadow hover:bg-yellow-600 transition"
+                      className="px-5 py-2 rounded-full bg-gray-700 text-white font-semibold shadow hover:bg-gray-800 transition"
                     >
                       Edit
                     </button>

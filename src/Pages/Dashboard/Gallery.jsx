@@ -74,11 +74,11 @@ export default function GalleryToggle() {
             className={`relative px-6 py-3 font-semibold rounded-full transition-all duration-300 
               ${
                 galleryType === type
-                  ? "bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500 text-white shadow-lg shadow-pink-300/50"
+                  ? "bg-gray-700  from-gray-700 text-white shadow-lg shadow-pink-300/50"
                   : "bg-gray-200 text-gray-700 hover:bg-indigo-100"
               }
               before:absolute before:inset-0 before:rounded-full before:opacity-0 before:transition-opacity before:duration-300
-              hover:before:opacity-30 before:bg-gradient-to-r before:from-indigo-400 before:via-purple-500 before:to-pink-500
+              hover:before:opacity-30 
             `}
           >
             {type.charAt(0).toUpperCase() + type.slice(1)} Gallery
@@ -88,7 +88,7 @@ export default function GalleryToggle() {
 
       {/* Upload Form */}
       <div className="bg-white shadow-xl rounded-2xl p-8 max-w-2xl mx-auto mb-14">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6 tracking-wide">
+        <h2 className="text-3xl font-bold text-gray-700 mb-6 tracking-wide">
           Upload to {galleryType.charAt(0).toUpperCase() + galleryType.slice(1)} Gallery
         </h2>
 
@@ -131,7 +131,7 @@ export default function GalleryToggle() {
               className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
                 file:rounded-full file:border-0
                 file:text-sm file:font-semibold
-                file:bg-gradient-to-r file:from-indigo-600 file:via-purple-600 file:to-pink-600
+                file:bg-gray-700
                 file:text-white
                 hover:file:brightness-110
                 cursor-pointer
@@ -141,8 +141,8 @@ export default function GalleryToggle() {
 
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-indigo-500 via-purple-600 to-pink-500
-              text-white font-bold py-3 rounded-full shadow-lg hover:shadow-pink-400/70
+            className="w-full bg-gray-800
+              text-white font-bold py-3 rounded-full shadow-lg 
               transition duration-300"
           >
             Upload Image

@@ -117,7 +117,7 @@ export default function Dashboard_news() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Form Section */}
         <div className="bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-xl font-bold mb-4 text-gray-800">
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">
             {editId ? "✏️ Edit News" : "📰 Add News"}
           </h2>
 
@@ -181,7 +181,7 @@ export default function Dashboard_news() {
             <div className="flex gap-3">
               <button
                 type="submit"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded-md"
+                className="bg-gray-800 hover:bg-gray-900 text-white font-medium px-4 py-2 rounded-md"
               >
                 {editId ? "Update" : "Submit"}
               </button>
@@ -200,7 +200,7 @@ export default function Dashboard_news() {
 
         {/* News List Section */}
         <div className="bg-white shadow-lg rounded-lg p-6 overflow-y-auto max-h-[calc(100vh-160px)]">
-          <h2 className="text-xl font-bold mb-4 text-gray-800">📋 News Items</h2>
+          <h2 className="text-2xl font-bold mb-6 text-gray-800">📋 News Items</h2>
           <div className="space-y-4">
             {newsList.length === 0 ? (
               <p className="text-gray-500">No news available.</p>

@@ -13,7 +13,7 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-64 h-screen bg-gradient-to-b from-slate-800 to-slate-900 text-white shadow-lg flex flex-col">
+    <aside className="w-64 h-screen bg-gradient-to-b from-slate-700 to-slate-900 text-white shadow-lg flex flex-col">
       {/* Brand Header */}
       <div className="p-6 border-b border-slate-700">
         <h2 className="text-2xl font-bold tracking-tight">Vande Mataram Admin</h2>

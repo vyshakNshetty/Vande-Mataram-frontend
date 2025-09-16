@@ -30,7 +30,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="w-full h-20 bg-gradient-to-t from-slate-800 to-slate-900 px-6 py-4 flex items-center justify-between sticky top-0 z-50 border-b-1">
+    <header className="w-full h-20 bg-gradient-to-t from-slate-800 to-slate-800 px-6 py-4 flex items-center justify-between sticky top-0 z-50 border-b-1">
       {/* Logo / Title */}
       <div className="flex items-center gap-3">
          <img

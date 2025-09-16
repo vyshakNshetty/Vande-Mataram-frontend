@@ -138,7 +138,7 @@ export default function ActivitiesDashboard() {
             }}
             className={`px-5 py-2 rounded-full font-medium transition-all duration-200 ${
               tab === type
-                ? "bg-blue-600 text-white shadow"
+                ? "bg-gray-700 text-white shadow"
                 : "bg-gray-200 text-gray-700 hover:bg-gray-300"
             }`}
           >
@@ -152,8 +152,8 @@ export default function ActivitiesDashboard() {
         onSubmit={handleSubmit}
         className="bg-white p-6 rounded-xl shadow-md space-y-4"
       >
-        <h2 className="text-xl font-semibold text-gray-800">
-          {editId ? "✏️ Edit" : "➕ Create"} {tab} Activity
+        <h2 className="text-2xl font-bold mb-6">
+          {editId ? "✏️ Edit" : " Create"} {tab} Activity
         </h2>
         <input
           type="text"
@@ -161,7 +161,7 @@ export default function ActivitiesDashboard() {
           value={form.title}
           onChange={handleChange}
           placeholder="Activity Title"
-          className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-blue-500 focus:border-blue-500"
+          className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-gray-700 focus:border-gray-800"
           required
         />
         <textarea
@@ -169,19 +169,26 @@ export default function ActivitiesDashboard() {
           value={form.des}
           onChange={handleChange}
           placeholder="Activity Description"
-          className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-blue-500 focus:border-blue-500"
+          className="w-full border border-gray-300 rounded px-4 py-2 focus:ring-gray-700 focus:border-gray-800"
           required
         />
         {tab === "gurukulam" && (
           <input
             type="file"
             onChange={handleFileChange}
-            className="w-full"
+            className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
+                file:rounded-full file:border-0
+                file:text-sm file:font-semibold
+                file:bg-gray-700
+                file:text-white
+                hover:file:brightness-110
+                cursor-pointer
+              "
           />
         )}
         <button
           type="submit"
-          className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700"
+          className="bg-gray-900 text-white px-6 py-2 rounded hover:bg-gray-700"
         >
           {editId ? "Update" : "Create"}
         </button>
@@ -236,11 +243,18 @@ export default function ActivitiesDashboard() {
                       <input
                         type="file"
                         onChange={(e) => setUploadImage(e.target.files[0])}
-                        className="text-sm"
+                        className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4
+                file:rounded-full file:border-0
+                file:text-sm file:font-semibold
+                file:bg-gray-800
+                file:text-white
+                hover:file:brightness-110
+                cursor-pointer
+              "
                       />
                       <button
                         type="submit"
-                        className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+                        className="bg-gray-900 text-white px-3 py-1 rounded hover:bg-gray-800"
                       >
                         Upload
                       </button>
@@ -255,7 +269,7 @@ export default function ActivitiesDashboard() {
                   ) : (
                     <button
                       onClick={() => setUploadTarget(act.id)}
-                      className="bg-purple-600 text-white px-3 py-1 rounded mt-2 hover:bg-purple-700"
+                      className="bg-gray-700 text-white px-3 py-1 rounded mt-2 hover:bg-gray-800"
                     >
                       Add Image
                     </button>
@@ -267,7 +281,7 @@ export default function ActivitiesDashboard() {
               <div className="flex gap-2 mt-3">
                 <button
                   onClick={() => handleEdit(act)}
-                  className="bg-yellow-500 text-white px-4 py-1 rounded hover:bg-yellow-600"
+                  className="bg-gray-700 text-white px-4 py-1 rounded hover:bg-gray-900"
                 >
                   Edit
                 </button>
