@@ -30,7 +30,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="w-full h-20 bg-white shadow-md px-6 py-4 flex items-center justify-between sticky top-0 z-50">
+    <header className="w-full h-20 bg-gradient-to-t from-slate-800 to-slate-900 px-6 py-4 flex items-center justify-between sticky top-0 z-50 border-b-1">
       {/* Logo / Title */}
       <div className="flex items-center gap-3">
          <img
@@ -38,8 +38,8 @@ export default function Navbar() {
                 alt="Vande Mataram Gurukulam Logo"
                 className="h-10 w-auto sm:h-12 object-contain"
               />
-        <div className="text-gray-700 font-extrabold text-2xl tracking-tight">
-          Vande Mataram <span className="text-gray-700">Gurukulam</span>
+        <div className="text-white font-extrabold text-2xl tracking-tight">
+          Vande Mataram Gurukulam
         </div>
         
       </div>
