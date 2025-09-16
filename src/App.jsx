@@ -22,6 +22,7 @@ import DashboardLayout from './DashBoard';
 // DashBoard 
 import { Navigate } from "react-router-dom";
 import Home from './Pages/Dashboard/Home'
+import Backgrounds from './Pages/Dashboard/Backgrounds'
 import Dashboard_news from './Pages/Dashboard/News'
 import ActivitiesDashboard from './Pages/Dashboard/Activities';
 import GalleryToggle from './Pages/Dashboard/Gallery';
@@ -61,6 +62,7 @@ function App() {
           element={<PrivateRouters><DashboardLayout /></PrivateRouters>}>
           <Route index element={<Navigate to="home" replace />} />
           <Route path="home" element={<Home />} />
+          <Route path="bggrounds" element={<Backgrounds />} />
           <Route path="news" element={<Dashboard_news />} />
           <Route path="activities" element={<ActivitiesDashboard />} />
           <Route path="gallery" element={<GalleryToggle />} />
