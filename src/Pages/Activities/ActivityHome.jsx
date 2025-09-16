@@ -2,8 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import CoreActivitiesSection from './CoreActivities';
 import AdrishyaSection from './AdrishyaPage';
-import axios from 'axios';
-
+import axios from '../../service/apii';
+import heroimg from '../../assets/Backgrounds/home.jpg'
 
 const gurukulaRoutine = [
   { time: '4:30 AM', activity: 'Wake up & Nithya Karma' },
@@ -30,18 +30,24 @@ const ActivityPage = () => {
   const [activeTab, setActiveTab] = useState('adrishya');
   const [Data,setData]=useState([]);
 const routineImage=''
-  useEffect(()=>{
-    const fetchData=async()=>{
+ const[heroImageURL,setBg]=useState([]);
+ useEffect(() => {
+    const fetchBg = async () => {
       try {
-        const res=await axios.get('')
-        setData(res.data)
+        const res = await axios.get('activities_bg/');
+        if (res.data.length > 0) {
+          setBg(res.data[0].bg); // set image URL from API
+        }
+        else{
+          setBg(heroimg)
+        }
       } catch (error) {
-        alert(err)
+        setBg(heroimg); // fallback on error too
       }
-    }
-    fetchData();
-  },[])
-  const heroImageURL=Data.image
+    };
+
+    fetchBg();
+  }, []);
   return (
     <>
       {/* Hero Section */}

@@ -1,33 +1,37 @@
 // src/pages/SupportUsPage.jsx
 import React, { useEffect, useState } from 'react';
 import ContributionSection from './ContributionSection';
-// --- IMAGE PLACEHOLDER ---
-// You should replace this with a powerful, relevant image for your support page.
-
-import axios from 'axios';
+import heroimg from '../../assets/Backgrounds/home.jpg'
+import axios from '../../service/apii';
 
 const SupportUsPage = () => {
 
    const [Data,setData]=useState([]);
-
-  useEffect(()=>{
-    const fetchData=async()=>{
+const[heroImageURL,setBg]=useState([]);
+ useEffect(() => {
+    const fetchBg = async () => {
       try {
-        const res=await axios.get('')
-        setData(res.data)
+        const res = await axios.get('supportus_bg/');
+        if (res.data.length > 0) {
+          setBg(res.data[0].bg); // set image URL from API
+        }
+        else{
+          setBg(heroimg)
+        }
       } catch (error) {
-        alert(err)
+        setBg(heroimg); // fallback on error too
       }
-    }
-    fetchData();
-  },[])
-  const heroImage=''
+    };
+
+    fetchBg();
+  }, []);
+
   return (
     <>
       {/* Main Hero Section for Support Page */}
       <div
         className="relative h-screen bg-cover bg-center flex items-center justify-center text-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url(${heroImageURL})` }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <main className="relative z-10 max-w-4xl mx-auto px-4 mt-35">

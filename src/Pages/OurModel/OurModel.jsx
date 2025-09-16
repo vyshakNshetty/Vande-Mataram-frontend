@@ -1,12 +1,29 @@
 import React, { useEffect, useState } from 'react';
-import heroImageURL from '../../assets/Backgrounds/BagroundOurmodel.png';
+import heroImage from '../../assets/Backgrounds/BagroundOurmodel.png';
 import PanchamukhiSection from './PanchamukhiSection';
 import HolisticPathSection from './HolisticPath';
 import UniqueFeaturesSection from './UniqueSection';
-
-
+import axios from '../../service/apii'
 
 const OurModel = () => {
+const[heroImageURL,setBg]=useState([]);
+ useEffect(() => {
+    const fetchBg = async () => {
+      try {
+        const res = await axios.get('ourmodel_bg/');
+        if (res.data.length > 0) {
+          setBg(res.data[0].bg); // set image URL from API
+        }
+        else{
+          setBg(heroImage)
+        }
+      } catch (error) {
+        setBg(heroImage); // fallback on error too
+      }
+    };
+
+    fetchBg();
+  }, []);
 
   return (
     <>
