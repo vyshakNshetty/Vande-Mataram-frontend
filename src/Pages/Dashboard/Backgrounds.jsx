@@ -67,7 +67,7 @@ const BackgroundSection = ({ section }) => {
 
   return (
     <div className="bg-white shadow-md rounded-xl p-6 space-y-4 w-full">
-      <h2 className="text-xl font-bold">{section.label} Background</h2>
+      <h2 className="text-3xl font-extrabold mb-8">{section.label} Background</h2>
 
       {bgData?.bg ? (
         <img

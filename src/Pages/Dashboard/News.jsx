@@ -117,7 +117,7 @@ export default function Dashboard_news() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Form Section */}
         <div className="bg-white shadow-lg rounded-lg p-6">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">
+          <h2 className="text-3xl font-extrabold mb-8 text-gray-700">
             {editId ? "✏️ Edit News" : "📰 Add News"}
           </h2>
 
@@ -145,7 +145,7 @@ export default function Dashboard_news() {
                 value={formData.description}
                 onChange={handleChange}
                 rows="4"
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-gray-600 focus:border-gray-600"
                 required
               />
             </div>
@@ -159,7 +159,7 @@ export default function Dashboard_news() {
                 name="date"
                 value={formData.date}
                 onChange={handleChange}
-                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
+                className="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-gray-600 focus:border-gray-600"
                 required
               />
             </div>
@@ -200,7 +200,7 @@ export default function Dashboard_news() {
 
         {/* News List Section */}
         <div className="bg-white shadow-lg rounded-lg p-6 overflow-y-auto max-h-[calc(100vh-160px)]">
-          <h2 className="text-2xl font-bold mb-6 text-gray-800">📋 News Items</h2>
+          <h2 className="text-3xl font-extrabold mb-8 text-gray-700">📋 News Items</h2>
           <div className="space-y-4">
             {newsList.length === 0 ? (
               <p className="text-gray-500">No news available.</p>
