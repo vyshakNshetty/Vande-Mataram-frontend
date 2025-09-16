@@ -1,24 +1,36 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import heroImageURL from '../../assets/Backgrounds/home.jpg'
+import heroimg from '../../assets/Backgrounds/home.jpg'
 import ActivitiesSection from './Activities';
 import AboutSection from './AboutSection';
 import PillarsSection from './PillerSection'
 import NewsSection from './NewsSection';
 import VolunteerSection from './VolunterSection';
+import axios from '../../service/apii';
 
 const youtubeVideoID = '_0yLQ4H0W1g'; 
 
 const HomePage = () => {
+const [isModalOpen, setIsModalOpen] = useState(false);
+const openModal = () => setIsModalOpen(true);
+const closeModal = () => setIsModalOpen(false);
 
+const[heroImageURL,setBg]=useState([]);
+ useEffect(() => {
+    const fetchBg = async () => {
+      try {
+        const res = await axios.get('home_bg/');
+        if (res.data.length > 0) {
+          setBg(res.data[0].bg); // set image URL from API
+        }
+      } catch (error) {
+        setBg(heroimg); // fallback on error too
+      }
+    };
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-
+    fetchBg();
+  }, []);
 
   return (
     <>

@@ -1,35 +1,38 @@
 // src/pages/AboutPage.jsx
 import React, { useEffect, useState } from 'react';
 import OurPhilosophySection from './OurPhilosophySection';
-// --- IMAGE PLACEHOLDER ---
-// You should replace this with an image that represents your team or mission.
-// import heroImage from '../../assets/images/img_2.jpg'; 
+import heroimg from '../../assets/Backgrounds/home.jpg'
 import TeamSection from './TeamSection';
 import SteeringBoardSection from './SteeringBoardTeam';
-import axios from 'axios';
+import axios from '../../service/apii';
 import { data } from 'react-router-dom';
 
 const AboutPage = () => {
-  const [Data,setData]=useState([]);
   
-  useEffect(()=>{
-    const fetchData=async()=>{
+  const[heroImageURL,setBg]=useState([]);
+ useEffect(() => {
+    const fetchBg = async () => {
       try {
-        const res=await axios.get('')
-        setData(res.data)
+        const res = await axios.get('about_bg/');
+        if (res.data.length > 0) {
+          setBg(res.data[0].bg); // set image URL from API
+        }
+        else{
+          setBg(heroimg)
+        }
       } catch (error) {
-        alert(error)
+        setBg(heroimg); // fallback on error too
       }
-    }
-    fetchData()
-  },[])
-  const heroImage=Data.image
+    };
+
+    fetchBg();
+  }, []);
   return (
     <>
       {/* Main Hero Section for the About Page */}
       <div
         className="relative h-screen bg-cover bg-center flex items-center justify-center text-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url(${heroImageURL})` }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <main className="relative z-10 max-w-4xl mx-auto px-4 mt-32 ">

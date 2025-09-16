@@ -1,31 +1,36 @@
 // src/pages/ContactPage.jsx
 import React, { useEffect, useState } from 'react';
-
+import heroimg from '../../assets/Backgrounds/home.jpg'
 import ContactFormSection from './ContactForm';
 import ContactDetailsSection from './Details';
-import axios from 'axios';
+import axios from '../../service/apii';
 
 const ContactPage = () => {
-   const [Data,setData]=useState([]);
-
-  useEffect(()=>{
-    const fetchData=async()=>{
+ const[heroImageURL,setBg]=useState([]);
+ useEffect(() => {
+    const fetchBg = async () => {
       try {
-        const res=await axios.get('')
-        setData(res.data)
+        const res = await axios.get('contact_bg/');
+        if (res.data.length > 0) {
+          setBg(res.data[0].bg); // set image URL from API
+        }
+        else{
+          setBg(heroimg)
+        }
       } catch (error) {
-        alert(err)
+        setBg(heroimg); // fallback on error too
       }
-    }
-    fetchData();
-  },[])
-  const heroImage=Data.image
+    };
+
+    fetchBg();
+  }, []);
+
   return (
     <div className="overflow-x-hidden"> {/* Prevent horizontal scroll */}
       {/* Hero Section */}
       <div
         className="relative min-h-[100vh] bg-cover bg-center flex items-center justify-center text-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url(${heroImageURL})` }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <main className="relative z-10 max-w-4xl mx-auto px-4 mt-32">

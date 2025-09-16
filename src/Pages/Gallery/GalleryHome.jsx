@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import heroimg from '../../assets/Backgrounds/home.jpg'
 import axios from '../../service/apii'
 
 const PREVIEW_COUNT = 6; 
@@ -9,7 +10,7 @@ const[ADRISHYA_IMAGES,setADRISHYA_IMAGES]=useState([]);
   const [activeTab, setActiveTab] = useState('gurukula');
   const [selectedImage, setSelectedImage] = useState(null);
   const [sortOrder, setSortOrder] = useState('newest');
-
+ 
 useEffect(()=>{
   const fetchData=async()=>{
     try {
@@ -19,7 +20,7 @@ useEffect(()=>{
       setADRISHYA_IMAGES(result.data)
       
     } catch (error) {
-      alert(error)
+      console.log(error)
     }
   }
   fetchData()
@@ -60,25 +61,32 @@ useEffect(()=>{
 
    const [Data,setData]=useState([]);
 
-  useEffect(()=>{
-    const fetchData=async()=>{
+const[heroImageURL,setBg]=useState([]);
+ useEffect(() => {
+    const fetchBg = async () => {
       try {
-        const res=await axios.get('')
-        setData(res.data)
+        const res = await axios.get('gallery_bg/');
+        if (res.data.length > 0) {
+          setBg(res.data[0].bg); // set image URL from API
+        }
+        else{
+          setBg(heroimg)
+        }
       } catch (error) {
-      console.log(error)
+        setBg(heroimg); // fallback on error too
       }
-    }
-    fetchData();
-  },[])
+    };
 
-  const heroImage=Data.image
+    fetchBg();
+  }, []);
+
+
   return (
     <>
       {/* Hero Section */}
       <div
         className="relative h-screen bg-cover bg-center flex items-center justify-center text-center"
-        style={{ backgroundImage: `url(${heroImage})` }}
+        style={{ backgroundImage: `url(${heroImageURL})` }}
       >
         <div className="absolute inset-0 bg-black opacity-50"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 mt-32">
