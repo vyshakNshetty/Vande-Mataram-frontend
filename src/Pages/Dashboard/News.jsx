@@ -232,7 +232,7 @@ export default function Dashboard_news() {
                     <div className="mt-2 flex gap-2">
                       <button
                         onClick={() => handleEdit(item)}
-                        className="bg-yellow-500 hover:bg-yellow-600 text-white text-sm px-3 py-1 rounded"
+                        className="bg-gray-700 hover:bg-gray-900 text-white text-sm px-3 py-1 rounded"
                       >
                         Edit
                       </button>

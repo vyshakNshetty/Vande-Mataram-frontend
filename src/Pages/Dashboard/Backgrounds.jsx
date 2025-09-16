@@ -84,12 +84,19 @@ const BackgroundSection = ({ section }) => {
           type="file"
           accept="image/*"
           onChange={handleFileChange}
-          className="block w-full"
+          className="block w-full text-sm text-gray-500 file:mr-4 file:py-1 file:px-2
+                file:rounded-full file:border-0
+                file:text-sm file:font-semibold
+                file:bg-gray-600
+                file:text-white
+                hover:file:brightness-110
+                cursor-pointer
+              "
         />
         <button
           type="submit"
-          className={`bg-indigo-600 text-white px-4 py-2 rounded-lg ${
-            loading ? "opacity-50 cursor-not-allowed" : "hover:bg-indigo-700"
+          className={`bg-gray-800 text-white px-4 py-2 rounded-lg ${
+            loading ? "opacity-50 cursor-not-allowed" : "hover:bg-gray-900"
           }`}
           disabled={loading}
         >
