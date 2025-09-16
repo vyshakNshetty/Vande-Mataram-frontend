@@ -15,7 +15,7 @@ export default function Sidebar() {
     <aside className="w-64 h-screen bg-gradient-to-b from-slate-800 to-slate-900 text-white shadow-lg flex flex-col">
       {/* Brand Header */}
       <div className="p-6 border-b border-slate-700">
-        <h2 className="text-2xl font-bold tracking-tight">VM Admin</h2>
+        <h2 className="text-2xl font-bold tracking-tight">Vande Mataram Admin</h2>
         <p className="text-sm text-slate-400">Dashboard Panel</p>
       </div>
 

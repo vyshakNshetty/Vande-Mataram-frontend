@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../../service/api";
-
+import Logo from '../../assets/logo/logo.png';
 export default function Navbar() {
   const [email, setEmail] = useState(null);
   const navigate = useNavigate();
@@ -33,7 +33,12 @@ export default function Navbar() {
     <header className="w-full h-20 bg-white shadow-md px-6 py-4 flex items-center justify-between sticky top-0 z-50">
       {/* Logo / Title */}
       <div className="flex items-center gap-3">
-        <div className="text-blue-600 font-extrabold text-2xl tracking-tight">
+         <img
+                src={Logo}
+                alt="Vande Mataram Gurukulam Logo"
+                className="h-10 w-auto sm:h-12 object-contain"
+              />
+        <div className="text-gray-700 font-extrabold text-2xl tracking-tight">
           Vande Mataram <span className="text-gray-700">Gurukulam</span>
         </div>
         
